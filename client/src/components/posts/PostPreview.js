@@ -1,14 +1,45 @@
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+//import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: "100%",
+    marginBottom: "1rem"
+  },
+});
 
 export default () => {
+  const classes = useStyles();
 
-    return <Link to="/1stpost" className="card mb-3 preview-card-link">
-    <div className="card-body">
-      <h3 className="card-title">Card title</h3>
-      <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-      <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" className="card-link">Card link</a>
-      <a href="#" className="card-link">Another link</a>
-    </div>
-  </Link>
+  return (
+    <Card className={classes.root}>
+      <CardActionArea>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            Lizard
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+            across all continents except Antarctica
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
+          Share
+        </Button>
+        <Button size="small" color="primary">
+          Learn More
+        </Button>
+      </CardActions>
+    </Card>
+  );
 }

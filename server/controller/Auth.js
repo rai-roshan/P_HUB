@@ -68,4 +68,15 @@ exports.signin = (req, res, next) => {
         if(err)
         return res.status(500).send(`Error on server ${err}`);
     });
-}
+};
+
+exports.verifyJwt = (req, res, next) => {
+  const user = req.user;
+  const userName = user.firstName + ' ' + user.lastName;
+
+  console.log(`reAuth user ${userName}`)
+  res.status(200).send({
+    auth : true,
+    userName : userName
+  });
+};

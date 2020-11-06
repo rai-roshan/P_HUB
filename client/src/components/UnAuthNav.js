@@ -1,16 +1,11 @@
-import React from 'react';
 import {Link} from 'react-router-dom';
+import {Button} from '@material-ui/core';
 
 const UnAuthNav = () => {
 
-    return <ul className="navbar-nav">
-    <li className="nav-item" key={1}>
-      <Link className="btn btn-primary" to="/signup">Sign Up</Link>
-    </li>
-    <li className="nav-item" key={2}>
-      <Link className="btn btn-secondary ml-sm-2" to="/signin">Sign In</Link>
-    </li>
-  </ul>
+    return <Button variant="outlined" color="inherit">
+    <Link to="/signin">Login</Link>
+  </Button>
 };
 
 export default UnAuthNav;

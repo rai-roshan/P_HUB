@@ -1,8 +1,9 @@
+import { Container } from '@material-ui/core';
 import PostPreview from './PostPreview';
 
 export default () => {
 
-    return  <div className="container-md">
+    return  <Container maxWidth="md">
         <PostPreview />
         <PostPreview />
         <PostPreview />
@@ -12,5 +13,5 @@ export default () => {
         <PostPreview />
         <PostPreview />
         <PostPreview />
-    </div>
+    </Container>
 };
