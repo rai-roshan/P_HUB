@@ -13,7 +13,7 @@ export default (state={}, action) => {
       case CLEAR_PROFILE:  // clear the local redux state
         return {};
       case UPDATE_PROFILE:
-        return { ...state, user: action.payload };
+        return { ...state, user: {...state.user , ...action.payload} };
       default:
         return state;
     }

@@ -4,10 +4,11 @@ import Cookies from 'js-cookie';
 
 import authReducer from './reducers/auth_reducer';
 import profileReducer from './reducers/profileReducer';
+import alertReducer from './reducers/alertReducer';
 
-import {RE_AUTH_USER, AUTH_USER} from './actions/actionTypes';
+import {AUTH_USER} from './actions/actionTypes';
 
-const reducers = combineReducers({authReducer, profileReducer});
+const reducers = combineReducers({authReducer, profileReducer, alertReducer});
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 

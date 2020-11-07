@@ -5,7 +5,7 @@ import {
   } from '../actions/actionTypes';
 
 
-export default function(state = { authenticated: false, username: 'rai' }, action) {
+export default function(state = { authenticated: false, username: '' }, action) {
 // Attention!!! The state object here refers to state.auth, instead of the application state.
 
 switch(action.type) {

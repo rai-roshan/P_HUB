@@ -22,6 +22,7 @@ exports.updateProfile = (req, res, next) => {
 
   const firstName = req.body.firstName ? req.body.firstName : req.user.firstName;
     const lastName = req.body.lastName ? req.body.lastName : req.user.lastName;
+    const email = req.body.email ? req.body.email : req.user.email;
     const birthday = req.body.birthday ? req.body.birthday : req.user.birthday;
     const sex = req.body.sex ? req.body.sex : req.user.sex;
     const phone = req.body.phone ? req.body.phone : req.user.phone;
@@ -51,6 +52,7 @@ exports.updateProfile = (req, res, next) => {
       lastName: lastName,
       birthday: birthday,
       sex: sex,
+      email: email,
       phone: phone,
       address: address,
       occupation: occupation,

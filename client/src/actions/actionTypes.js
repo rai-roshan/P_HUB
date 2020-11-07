@@ -16,3 +16,6 @@ export const CHECK_AUTHORITY = 'check_authority';  // check if the user has the 
 
 export const CREATE_COMMENT = 'create_comment';
 export const FETCH_COMMENTS = 'fetch_comments';
+
+export const SHOW_ALERT ='show_alert';
+export const CLEAR_ALERT = 'clear_alert';

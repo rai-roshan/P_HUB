@@ -1,8 +1,8 @@
 import {
     AUTH_USER,
     UNAUTH_USER,
-    CHECK_AUTHORITY,
   } from './actionTypes';
+import { SHOW_ALERT } from './actionTypes';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -23,6 +23,7 @@ return function(dispatch) {
         });
 
         history.push('/posts');
+        dispatch({ type: SHOW_ALERT, payload: "logedin succesfully"});
     })
     .catch( err => {  
         console.log("error : ", err);
@@ -47,9 +48,12 @@ export function signupUser({ email, password, firstName, lastName }, history, se
           // - Redirect (PUSH) to the route '/signin', then show a success message to the user
           setSubmitting(false);
           history.push('/signin');
+          dispatch({ type: SHOW_ALERT, payload: "Signedup succesfully plz login now"});
         })
-        .catch(err=>{
-            console.log("error : ", err);
+        .catch(error=>{
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
             setSubmitting(false);
         });
     }

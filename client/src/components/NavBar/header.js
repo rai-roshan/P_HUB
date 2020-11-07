@@ -1,7 +1,7 @@
 import { useState , useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { verifyAuth, signoutUser } from '../actions/authActions';
+import { verifyAuth, signoutUser } from '../../actions/authActions';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -203,9 +203,11 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton>
+          
           <Typography className={classes.title} variant="h6" noWrap>
-            DEV BLOG
+          <Link to="/">DEV BLOG</Link>
           </Typography>
+          
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
