@@ -1,7 +1,11 @@
 import { Container, Typography , makeStyles, TextField, Button } from '@material-ui/core';
-import TextEditor from './Editor';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { EditorState, convertToRaw } from 'draft-js';
+import RichEditorExample from './Editor2';
+import {useState} from 'react';
+import { useDispatch } from 'react-redux';
+import { createPost } from '../../actions/postsAction';
 //import PreviewPost from './PreviewPost';
 
 
@@ -13,22 +17,31 @@ const useStyles = makeStyles({
 
 export default () => {
 
+    const [editorState,setEditorState] = useState(EditorState.createEmpty());
     const classes = useStyles();
+    const dispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
-            Title : '',
-            Tags : '',
+            title : '',
+            categories : '',
         },
         validationSchema : Yup.object({
-            Title : Yup.string()
+            title : Yup.string()
             .required('Required'),
-            Tags : Yup.string()
+            categories : Yup.string()
             .required('Required')
         }),
-        onSubmit : values => {
-            alert(JSON.stringify(values, null, 2));
+        onSubmit : (values, { setSubmitting }) => {
+            let RawDraftContentState = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
+            let result = {
+                ...values,
+                content : RawDraftContentState
+            }
+            //alert(JSON.stringify(result, null, 2));
+            dispatch( createPost(result, setSubmitting ) );
         }
     });
+
 
     return <Container maxWidth="md">
         <Typography variant="h3" className={ classes.mb2 } >
@@ -36,30 +49,36 @@ export default () => {
         </Typography>
         <form onSubmit={ formik.handleSubmit }>
         <TextField
-            id="Title"
+            id="title"
             label="Title"
-            value={formik.values.Title}
+            value={formik.values.title}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            helperText={formik.touched.Title ? formik.errors.Title : ""}
-            error={formik.touched.Title && Boolean(formik.errors.Title)}
+            helperText={formik.touched.title ? formik.errors.title : ""}
+            error={formik.touched.title && Boolean(formik.errors.title)}
             margin="dense"
             variant="outlined"
             fullWidth />
 
         <TextField
-            id="Tags"
-            label="enter tags with , seperated"
-            value={formik.values.Tags}
+            id="categories"
+            label="enter categories with , seperated"
+            value={formik.values.categories}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            helperText={formik.touched.Tags ? formik.errors.Tags : ""}
-            error={formik.touched.Tags && Boolean(formik.errors.Tags)}
+            helperText={formik.touched.categories ? formik.errors.categories : ""}
+            error={formik.touched.categories && Boolean(formik.errors.categories)}
             margin="dense"
             variant="outlined"
             fullWidth />
 
-        <TextEditor />
+        {/*<TextEditor 
+        editorState={ editorState }
+        setEditorState={ setEditorState }/>*/}
+
+        <RichEditorExample 
+        editorState={ editorState }
+        setEditorState={ setEditorState }/>
         
         <Button type="submit" variant="contained" color="primary">
             create

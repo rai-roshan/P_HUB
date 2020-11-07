@@ -146,7 +146,7 @@ const UpdateForm = () => {
                 <TextField
                 id="birthday"
                 type="date"
-                value={formik.values.date}
+                value={formik.values.birthday}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 helperText={formik.touched.birthday ? formik.errors.birthday : ""}

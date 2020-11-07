@@ -205,7 +205,7 @@ exports.updatePost = function(req, res, next) {
 
     // Require auth
     const user = req.user;
-  
+    console.log("=================user : ", user);
     // Fetch posts by author ID
     Post
       .find({
@@ -220,7 +220,7 @@ exports.updatePost = function(req, res, next) {
         if (err) {
           console.log(err);
           return res.status(422).json({
-            message: 'Error! Could not retrieve posts.'
+            message: 'Error! Could not retrieve posts. rai'
           });
         }
         res.json(posts);

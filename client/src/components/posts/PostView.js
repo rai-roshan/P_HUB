@@ -1,56 +1,8 @@
 import { Typography, Container, makeStyles, Card, Paper } from '@material-ui/core';
 import PreviewPost from './PreviewPost';
-
-const dummy = {
-    "blocks": [
-        {
-            "key": "8i090",
-            "text": "Hello CodePulse!",
-            "type": "unstyled",
-            "depth": 0,
-            "inlineStyleRanges": [
-                {
-                    "offset": 0,
-                    "length": 16,
-                    "style": "BOLD"
-                }
-            ],
-            "entityRanges": [],
-            "data": {}
-        },
-        {
-            "key": "42ncd",
-            "text": "This text should be underlined.",
-            "type": "unstyled",
-            "depth": 0,
-            "inlineStyleRanges": [
-                {
-                    "offset": 0,
-                    "length": 31,
-                    "style": "UNDERLINE"
-                }
-            ],
-            "entityRanges": [],
-            "data": {}
-        },
-        {
-            "key": "327r6",
-            "text": "And this text should be italic.",
-            "type": "unstyled",
-            "depth": 0,
-            "inlineStyleRanges": [
-                {
-                    "offset": 0,
-                    "length": 31,
-                    "style": "ITALIC"
-                }
-            ],
-            "entityRanges": [],
-            "data": {}
-        }
-    ],
-    "entityMap": {}
-};
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPost } from '../../actions/postsAction';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles({
     root : {
@@ -69,20 +21,33 @@ const useStyles = makeStyles({
     }
 });
 
-export default () => {
+export default (props) => {
 
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const posts = useSelector(store=>store.postsReducer);
+    let post = null;
+    if(posts)
+    post = posts[props.match.params.id];
+
+    //console.log("post data : ", post);
+    
+    //console.log("post id: ",props.match.params.id);
+
+    useEffect(()=>{
+        dispatch(fetchPost(props.match.params.id));
+    },[]);
 
     return <Container maxWidth="md" className={classes.root}>
         <Paper elevation={3} className={classes.paper}>
             <Container maxWidth="lg">
             <Typography variant="h2" className={ classes.blogTitle }>
-                Blog Title
+                { post ? post.title : "Loading ..." }
             </Typography>
 
-             <Typography className={classes.muteText}>Author name</Typography>
+            <Typography className={classes.muteText}>{ post ? `Author : ${post.authorName}` : "Loading..." }</Typography>
 
-            <PreviewPost storedState={dummy} />
+            { post ? <PreviewPost storedState={post.content} /> : "Loading ..." }
             </Container>
         </Paper>
     </Container>

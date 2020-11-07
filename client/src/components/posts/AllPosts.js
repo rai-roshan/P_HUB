@@ -1,8 +1,7 @@
 import { Container, Typography, Box, makeStyles, Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchPostsByUserId } from '../../actions/postsAction';
+import { fetchPosts } from '../../actions/postsAction';
 
 import PostList from './PostList';
 
@@ -23,10 +22,10 @@ export default () => {
     const posts = useSelector(store=>store.postsReducer);
 
     useEffect(()=>{
-        dispatch(fetchPostsByUserId());
+        dispatch(fetchPosts());
     },[]);
-
-    return <Box>
+    
+    return <Box> 
     <Container maxWidth="md">
         <Box 
         display="flex" 
@@ -35,16 +34,11 @@ export default () => {
         alignItems="center"
         className={classes.mb3}>
         <Typography variant="h2" className={classes.mb1}>
-            My Posts
+            All Posts
         </Typography>
-        <Button variant="contained" color="primary">
-            <Link to="/posts/new">
-            Create new post
-            </Link>
-        </Button>
         </Box>
     </Container>
 
-    <PostList posts={ posts } />
+    <PostList posts={ posts }/>
     </Box>
 };

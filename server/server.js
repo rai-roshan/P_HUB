@@ -13,7 +13,7 @@ app.use(express.urlencoded());
 
 app.use('/api/auth' , authRoutes);
 app.use('/api/profile' , profileRoutes);
-app.use('/api/post' , blogRoutes);
+app.use('/api/posts' , blogRoutes);
 app.use('/api/comments' , commentRoutes);
 
 const PORT = 5000 || process.env.PORT;

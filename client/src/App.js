@@ -6,7 +6,7 @@ import store from './store';
 import AlertCard from './components/Alert/Alert';
 import PrivateRoute from './components/Auth/CheckAuth';
 import Welcome from './components/Welcome';
-import PostList from './components/posts/PostList';
+import AllPosts from './components/posts/AllPosts';
 import Header from './components/NavBar/header';
 import Footer from './components/footer';
 import Signup2 from './components/Auth/Signup2';
@@ -30,11 +30,11 @@ function App() {
         <AlertCard />
         <Switch>
           <Route exact path="/" component={ Welcome } />
-          <Route exact path="/posts" component={ PostList } />
+          <Route exact path="/posts" component={ AllPosts } />
           <Route path="/signup" component={ Signup2 } />
           <Route path="/signin" component={ Signin2 } />
-          <PrivateRoute path='/posts/my' redirectPath='/' component={ MyPosts } />
-          <PrivateRoute path="/posts/new" redirectPath='/' component={ NewPost } />
+          <PrivateRoute path='/posts/my' redirectPath='/signin' component={ MyPosts } />
+          <PrivateRoute path="/posts/new" redirectPath='/signin' component={ NewPost } />
           <Route path='/posts/view/:id' component={ PostView } />
           <PrivateRoute path="/profile/my" redirectPath='/' component={ ProfileView } />
           <PrivateRoute path="/profile/update" redirectPath='/' component={ UpdateProfile } />

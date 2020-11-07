@@ -43,9 +43,8 @@ export default ({username}) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}><Link to="/posts/my" >My Posts</Link></MenuItem>
-        <MenuItem onClick={handleClose}><Link to="/profile/my">My Profile</Link></MenuItem>
-        <MenuItem onClick={handleClose}>Settings</MenuItem>
+        <Link to="/posts/my" ><MenuItem onClick={ handleClose }>My Posts</MenuItem></Link>
+        <Link to="/profile/my"><MenuItem onClick={ handleClose }>My Profile</MenuItem></Link>
         <MenuItem onClick={handleSignout}>Logout</MenuItem>
       </Menu>
     </div>
