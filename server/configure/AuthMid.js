@@ -16,12 +16,12 @@ const verifyToken = (req, res, next) => {
 const getUser = (req, res, next) => {
     User.findById(req.userId)
     .then(user=>{
-        if (!user) return res.status(404).send("No user found.");
+        if (!user) return res.status(404).send({ message : "No user found." });
         req.user = user;
         next();
     })
     .catch(err=>{
-        if (err) return res.status(500).send("There was a problem finding the user.");
+        if (err) return res.status(500).send({ message : "There was a problem finding the user."});
     });
 };
 

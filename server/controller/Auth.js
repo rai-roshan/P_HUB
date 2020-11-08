@@ -51,7 +51,7 @@ exports.signin = (req, res, next) => {
     User.findOne({ email : req.body.email })
     .then(user=>{
         if(!user)
-        return res.status(404).send("User not found");
+        return res.status(404).send({ message : "User not found"});
         
 
         //check password
@@ -66,7 +66,7 @@ exports.signin = (req, res, next) => {
     })
     .catch(err=>{
         if(err)
-        return res.status(500).send(`Error on server ${err}`);
+        return res.status(500).send({ message : `Error on server ${err}` });
     });
 };
 

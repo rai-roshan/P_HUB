@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 
 const NoPosts = () => {
     const classes = useStyles();
-    return <Card className={classes.root}>
+    return <Card className={classes.root} key="no-post-id-key">
         <CardActionArea>
             <Link to="/posts/new">
             <CardContent>

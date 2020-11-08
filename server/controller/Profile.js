@@ -6,8 +6,8 @@ const Comment = require('../models/comment');
 exports.fetchProfile = (req, res, next) => {
   
     User.findById(req.userId,{ password : 0, __v: 0 }, (err, user) => {
-        if (err) return res.status(500).send("There was a problem finding the user.");
-        if (!user) return res.status(404).send("No user found.");
+        if (err) return res.status(500).send({ message : "There was a problem finding the user."});
+        if (!user) return res.status(404).send({ message : "No user found."});
         
         res.status(200).send(user);
       });
@@ -69,6 +69,9 @@ exports.updateProfile = (req, res, next) => {
       // Return updated user profile
       res.send({ user: updatedUser });
     });
+
+    if(err)
+    res.status(501).send({ message : `err`});
   }
   /*User.findById(req.userId,{ password : 0, __v: 0 }, (err, userDB) => {
     if (err) return res.status(500).send("There was a problem finding the user.");

@@ -21,6 +21,9 @@ const useStyles = makeStyles({
     alignItems: "center",
     height: "80vh"
   },
+  formMargin: {
+    margin: "1rem"
+  },
   mlAuto: {
     marginLeft: "auto" 
   },
@@ -72,7 +75,7 @@ const SIGNUP = props => {
 
   return authenticated ?  <Redirect to={{pathname: `/posts`, state: {from: props.location}}} /> : 
     <div className={classes.container}>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} className={classes.formMargin}>
         <Card className={classes.card}>
           <CardContent>
 

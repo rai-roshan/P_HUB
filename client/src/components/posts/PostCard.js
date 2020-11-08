@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { Box, Chip } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 //import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
@@ -33,9 +32,8 @@ export default ({ post }) => {
     console.log("do nothing")
   };
 
-  return (
-    <Link to={`/posts/view/${post._id}`} key={post._id+"b"}>
-    <Card className={classes.root} key={post._id+"c"} >
+  return <Card key={post._id} className={classes.root} >
+    <Link to={`/posts/view/${post._id}`}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
@@ -50,19 +48,11 @@ export default ({ post }) => {
           <Typography variant="body2" color="textSecondary" component="p">
           
           </Typography>
-          <Box display="flex" justifyContent="left">
+          <Box display="flex" justifyContent="left" flexWrap="wrap" >
             { post.categories.map(tag=> <Chip color="primary" variant="outlined" label={tag} onClick={ handleTagClick } className={classes.mr1} />) }
           </Box>
         </CardContent>
       </CardActionArea>
-      {/*<CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>*/}
-    </Card>
-    </Link>);
+      </Link>
+    </Card>;
 }
