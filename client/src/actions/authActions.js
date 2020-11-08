@@ -15,7 +15,7 @@ return function(dispatch) {
     .then(response => {  
         //localStorage.setItem('token', response.data.token);
         Cookies.set('token',response.data.token,{ expires: 1 });
-        console.log("res :", response.data);
+        //console.log("res :", response.data);
         setSubmitting(false);
         dispatch({
         type: AUTH_USER,
@@ -23,11 +23,18 @@ return function(dispatch) {
         });
 
         history.push('/posts');
-        dispatch({ type: SHOW_ALERT, payload: "logedin succesfully"});
+        dispatch({ 
+            type: SHOW_ALERT, 
+            payload: "logedin succesfully", 
+            alertType: "success" });
     })
     .catch( err => {  
-        console.log("error : ", err);
+        //console.log("error : ", err);
         setSubmitting(false);
+        dispatch({ 
+            type: SHOW_ALERT, 
+            payload: err.response.data.message , 
+            alertType: "error"});
     });
 }
 };
@@ -44,17 +51,24 @@ export function signupUser({ email, password, firstName, lastName }, history, se
     return function(dispatch) {
       axios.post(`/api/auth/signup`, { email, password, firstName, lastName })  // axios returns a promise
         .then(response => {  // If request is good (sign up succeeded) ...
-         console.log("res :", response.data);
+         //console.log("res :", response.data);
           // - Redirect (PUSH) to the route '/signin', then show a success message to the user
           setSubmitting(false);
           history.push('/signin');
-          dispatch({ type: SHOW_ALERT, payload: "Signedup succesfully plz login now"});
+          dispatch({ 
+              type: SHOW_ALERT, 
+              payload: "Signedup succesfully plz login now" , 
+              alertType: "info"});
         })
         .catch(error=>{
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
+            //console.log(error.response.data);
+            //console.log(error.response.status);
+            //console.log(error.response.headers);
             setSubmitting(false);
+            dispatch({ 
+                type: SHOW_ALERT,
+                payload: error.response.data.message , 
+                alertType: "error"});
         });
     }
   };
@@ -69,7 +83,11 @@ export function verifyAuth () {
             });
         })
         .catch(err=>{
-            console.log("error : ",err);
+            //console.log("error : ",err);
+            dispatch({ 
+                type: SHOW_ALERT, 
+                payload: err.response.data.message , 
+                alertType: "error"});
         });
     };
 };

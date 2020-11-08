@@ -3,7 +3,7 @@ import { BrowserRouter as Router , Route , Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 
-import AlertCard from './components/Alert/Alert';
+import StatusAlert from './components/Alert/StatusAlert';
 import PrivateRoute from './components/Auth/CheckAuth';
 import Welcome from './components/Welcome';
 import AllPosts from './components/posts/AllPosts';
@@ -27,7 +27,7 @@ function App() {
 
       <Router>
         <Header />
-        <AlertCard />
+        <StatusAlert />
         <Switch>
           <Route exact path="/" component={ Welcome } />
           <Route exact path="/posts" component={ AllPosts } />

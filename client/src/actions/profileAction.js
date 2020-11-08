@@ -7,8 +7,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 export function fetchProfile() {
-    console.log("user data  fetch");
-    console.log("token : ",Cookies.get('token'));
+    //console.log("user data  fetch");
+    //console.log("token : ",Cookies.get('token'));
     return function(dispatch) {
       axios.get(`/api/profile`, {
         headers: {'x-access-token': Cookies.get('token') }
@@ -54,14 +54,16 @@ export function fetchProfile() {
             payload: response.data.user.firstName + ' ' + response.data.user.lastName,
           });
           // - history.replace
-          dispatch({ type: SHOW_ALERT, payload: "profile updated succesfully"});
+          dispatch({ type: SHOW_ALERT, payload: "profile updated succesfully", alertType: "success" });
           setSubmitting(false);
           //history.push("/profile/my");
         })
-        .catch(error => { // Update profile failed
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
+        .catch(err => { // Update profile failed
+            //console.log(error.response.data);
+            //console.log(error.response.status);
+            //console.log(error.response.headers);
+            
+            dispatch({ type: SHOW_ALERT, payload: err.response.data.message , alertType: "error"});
         });
     }
   }

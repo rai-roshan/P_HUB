@@ -12,18 +12,22 @@ const ROOT_URL = "/api/posts";
 export function fetchPosts() {
 
     return function(dispatch) {
-      axios.get(`${ROOT_URL}`).then((response) => {
+      axios.get(`${ROOT_URL}`)
+      .then((response) => {
         dispatch({
           type: FETCH_POSTS,
           payload: response.data,
           loading: false
         });
+      })
+      .catch(err=>{
+        dispatch({ type: SHOW_ALERT, payload: err.response.data.message , alertType: "error"});
       });
     }
   }
   
   export function createPost({ title, categories, content }, setSubmitting) {
-    console.log(title, categories, content);
+    //console.log(title, categories, content);
     return function(dispatch) {
       axios.post(`${ROOT_URL}`, {
         title,
@@ -38,11 +42,14 @@ export function fetchPosts() {
             payload: response.data,
           });
           setSubmitting(false);
-          dispatch({ type: SHOW_ALERT, payload: "Post Created Succesfully"});
+          dispatch({ 
+            type: SHOW_ALERT, 
+            payload: "Post Created Succesfully",  
+            alertType: "success" });
         })
-        .catch(({response}) => {  // If create post failed, alert failure message
-            console.log(response.message);
-
+        .catch( err => {  // If create post failed, alert failure message
+            //console.log(response.message);
+            dispatch({ type: SHOW_ALERT, payload: err.response.data.message , alertType: "error"});
         });
     }
   }
@@ -50,12 +57,16 @@ export function fetchPosts() {
   export function fetchPost(id) {
   
     return function(dispatch) {
-      axios.get(`${ROOT_URL}/full/${id}`).then(response => {
+      axios.get(`${ROOT_URL}/full/${id}`)
+      .then(response => {
         // console.log(response);
         dispatch({
           type: FETCH_POST,
           payload: response.data,
         });
+      })
+      .catch(err=>{
+        dispatch({ type: SHOW_ALERT, payload: err.response.data.message , alertType: "error"});
       });
     }
   }
@@ -115,11 +126,11 @@ export function fetchPosts() {
             payload: response.data,
           });
         })
-        .catch(error=>{
-          console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          dispatch({ type: SHOW_ALERT, payload: error.response.data.message })
+        .catch(err=>{
+          //console.log(error.response.data);
+          //console.log(error.response.status);
+          //console.log(error.response.headers);
+          dispatch({ type: SHOW_ALERT, payload: err.response.data.message, alertType : "error" });
         });
     }
   }

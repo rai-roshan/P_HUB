@@ -105,7 +105,7 @@ export default function SideDrawer({ sidebar, setSidebar, authenticated, usernam
 
   const handleSignout = () => {
     dispatch(signoutUser());
-    dispatch({ type: SHOW_ALERT, payload: "user signedout succesfully"});
+    dispatch({ type: SHOW_ALERT, payload: "user signedout succesfully", alertType: "info" });
   };
 
   const toggleDrawer = (open) => (event) => {
