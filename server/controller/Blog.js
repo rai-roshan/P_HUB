@@ -6,7 +6,7 @@ exports.fetchPosts = function(req, res, next) {
     Post
       .find({})
       .select({})
-      .limit(100)
+      .limit(12)
       .sort({
         time: -1
       })
@@ -205,14 +205,14 @@ exports.updatePost = function(req, res, next) {
 
     // Require auth
     const user = req.user;
-    console.log("=================user : ", user);
+    //console.log("=================user : ", user);
     // Fetch posts by author ID
     Post
       .find({
         authorId: user._id
       })
       .select({})
-      .limit(100)
+      .limit(12)
       .sort({
         time: -1
       })

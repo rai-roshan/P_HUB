@@ -1,4 +1,4 @@
-import { Container, Typography , makeStyles, TextField, Button } from '@material-ui/core';
+import { Container, Typography , makeStyles, TextField, Button, Box } from '@material-ui/core';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { EditorState, convertToRaw } from 'draft-js';
@@ -6,12 +6,16 @@ import RichEditorExample from './Editor2';
 import {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { createPost } from '../../actions/postsAction';
+import { Link } from 'react-router-dom';
 //import PreviewPost from './PreviewPost';
 
 
 const useStyles = makeStyles({
     mb2 : {
         marginBottom : "2rem"
+    },
+    mx1 : {
+        margin : "0.5rem 1rem"
     }
 });
 
@@ -80,9 +84,17 @@ export default () => {
         editorState={ editorState }
         setEditorState={ setEditorState }/>
         
-        <Button type="submit" variant="contained" color="primary">
+        <Box display="flex" justifyContent="center" flexWrap="wrap" mt="1rem" >
+        <Button type="submit" variant="contained" color="primary" className={classes.mx1} >
             create
         </Button>
+        <Link to="/posts/my">
+        <Button variant="contained" color="secondary" className={classes.mx1} >
+            My Posts
+        </Button>
+        </Link>
+        </Box>
+
         </form>
     </Container>
 };

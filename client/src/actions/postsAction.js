@@ -4,14 +4,22 @@ import {FETCH_POSTS,
     CREATE_POST,
     FETCH_POST,
     UPDATE_POST,
-    DELETE_POST, SHOW_ALERT} from './actionTypes';
+    DELETE_POST, SHOW_ALERT, LOADING_POSTS} from './actionTypes';
   
 
 const ROOT_URL = "/api/posts";
 
+export function loadingPosts() {
+  return {
+    type : LOADING_POSTS
+  }
+};
+
 export function fetchPosts() {
 
     return function(dispatch) {
+      dispatch({ type: LOADING_POSTS });
+
       axios.get(`${ROOT_URL}`)
       .then((response) => {
         dispatch({
@@ -70,7 +78,7 @@ export function fetchPosts() {
       });
     }
   }
-  
+
   export function updatePost({ _id, title, categories, content }, onEditSuccess, historyReplace) {
   
     return function(dispatch) {
@@ -117,6 +125,8 @@ export function fetchPosts() {
   export function fetchPostsByUserId() {
   
     return function(dispatch) {
+      dispatch({ type: LOADING_POSTS });
+
       axios.get(`${ROOT_URL}/my_posts`, {
         headers: {'x-access-token' : Cookies.get('token') }  // require auth
       })

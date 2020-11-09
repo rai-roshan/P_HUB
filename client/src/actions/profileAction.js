@@ -18,6 +18,12 @@ export function fetchProfile() {
           type: FETCH_PROFILE,
           payload: response.data,
         });
+      })
+      .catch(err=>{
+        dispatch({ 
+          type: SHOW_ALERT, 
+          payload: err.response.data.message,
+          alertType: "error" });
       });
     }
   }

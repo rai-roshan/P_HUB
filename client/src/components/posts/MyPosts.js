@@ -1,17 +1,19 @@
-import { Container, Typography, Box, makeStyles, Button } from '@material-ui/core';
+import { Container, Typography, Box, makeStyles, Button, Divider } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchPostsByUserId } from '../../actions/postsAction';
 
 import PostList from './PostList';
-
+import LoadingPosts from './LoadingPosts';
 
 const useStyles = makeStyles({
-    mb3 : {
-        marginBottom: "3rem"
+    mb2 : {
+        marginBottom: "2rem"
     },
-    mb1 : {
+    h2 : {
+        fontWeight: "600",
+        color: "#525252",
         marginBottom: "1rem"
     }
 });
@@ -20,7 +22,7 @@ export default () => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
-    const posts = useSelector(store=>store.postsReducer);
+    const { loading , posts } = useSelector(store=>store.postsReducer);
 
     useEffect(()=>{
         dispatch(fetchPostsByUserId());
@@ -30,13 +32,14 @@ export default () => {
     <Container maxWidth="md">
         <Box 
         display="flex" 
+        flexDirection="column"
         flexWrap="wrap" 
         justifyContent="space-between" 
-        alignItems="center"
-        className={classes.mb3}>
-        <Typography variant="h2" className={classes.mb1}>
+        className={classes.mb2}>
+        <Typography variant="h2" className={classes.h2}>
             My Posts
         </Typography>
+        <Divider />
         <Button variant="contained" color="primary">
             <Link to="/posts/new">
             Create new post
@@ -45,6 +48,7 @@ export default () => {
         </Box>
     </Container>
 
-    <PostList posts={ posts } />
+    { loading ? <LoadingPosts /> : <PostList posts={ posts } /> }
+
     </Box>
 };

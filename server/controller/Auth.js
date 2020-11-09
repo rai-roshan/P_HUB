@@ -45,8 +45,8 @@ exports.signup = (req,res,next) => {
 
 exports.signin = (req, res, next) => {
 
-    console.log("email : ",req.body.email);
-    console.log("pass : ",req.body.password);
+    //console.log("email : ",req.body.email);
+    //console.log("pass : ",req.body.password);
     //find user
     User.findOne({ email : req.body.email })
     .then(user=>{
@@ -74,7 +74,7 @@ exports.verifyJwt = (req, res, next) => {
   const user = req.user;
   const userName = user.firstName + ' ' + user.lastName;
 
-  console.log(`reAuth user ${userName}`)
+  //console.log(`reAuth user ${userName}`)
   res.status(200).send({
     auth : true,
     userName : userName

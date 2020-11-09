@@ -1,11 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import { Box, Chip } from '@material-ui/core';
+import { Box, Container } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { Skeleton } from '@material-ui/lab';
 
 const useStyles = makeStyles({
   root: {
@@ -23,31 +23,42 @@ const useStyles = makeStyles({
   }
 });
 
-export default ({ post }) => {
+const PostSkeleton = ( ) => {
   const classes = useStyles();
-  const handleTagClick = () =>{
-    console.log("do nothing")
-  };
 
-  return <Card key={post._id} className={classes.root} >
-    <Link to={`/posts/view/${post._id}`}>
+
+  return <Card className={classes.root} >
+    
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-            { post.title }
+            <Skeleton width="5rem" />
           </Typography>
           <Typography>
-            {`by : ${post.authorName}`}
+            <Skeleton width="4rem" />
           </Typography>
           <Typography className={classes.mute}>
-            { new Date(post.time).toLocaleString() }
+            <Skeleton width="5rem" />
           </Typography>
         
           <Box display="flex" justifyContent="left" flexWrap="wrap" >
-            { post.categories.map(tag=> <Chip color="primary" variant="outlined" label={tag} onClick={ handleTagClick } className={classes.mr1} />) }
+            <Skeleton className={classes.mr1} width="2.5rem" />
+            <Skeleton className={classes.mr1} width="2.5rem" />
+            <Skeleton className={classes.mr1} width="2.5rem" />
           </Box>
         </CardContent>
       </CardActionArea>
-      </Link>
+      
     </Card>;
-}
+};
+
+const LoadingPosts = () => {
+
+    return <Container maxWidth="md">
+        <PostSkeleton />
+        <PostSkeleton />
+        <PostSkeleton />
+    </Container>
+};
+
+export default LoadingPosts;

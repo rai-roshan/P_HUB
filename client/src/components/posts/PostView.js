@@ -25,7 +25,7 @@ export default (props) => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
-    const posts = useSelector(store=>store.postsReducer);
+    const { posts } = useSelector(store=>store.postsReducer);
     let post = null;
     if(posts)
     post = posts[props.match.params.id];

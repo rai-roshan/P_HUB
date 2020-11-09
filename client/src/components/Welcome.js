@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default () => {
+const Welcome = () => {
   const classes = useStyles();
 
   return <Container maxWidth="lg" style={ { minHeight: "80vh"}}>
@@ -73,4 +73,6 @@ export default () => {
     </Grid>
 
     </Container>
- }
+ };
+
+ export default Welcome;

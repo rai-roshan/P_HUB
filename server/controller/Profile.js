@@ -17,8 +17,8 @@ exports.updateProfile = (req, res, next) => {
 
   // Require auth
   //let user = null;
-  console.log("user ID : ", req.userId);
-  console.log("user : ", req.user);
+  //console.log("user ID : ", req.userId);
+  //console.log("user : ", req.user);
 
   const firstName = req.body.firstName ? req.body.firstName : req.user.firstName;
     const lastName = req.body.lastName ? req.body.lastName : req.user.lastName;

@@ -5,22 +5,54 @@ import {
   FETCH_POST,
   UPDATE_POST,
   DELETE_POST,
+  LOADING_POSTS
 } from '../actions/actionTypes';
 
-export default function(state = {}, action) {
+export default function(state = { loading : true, posts : {} }, action) {
   // Attention!!! The state object here refers to state.posts, instead of the application state.
 
   switch(action.type) {
+    case LOADING_POSTS:
+      return {
+        loading : true,
+        posts: {}
+      };
+
     case FETCH_POSTS:
-      return _.mapKeys(action.payload, '_id');
+      return { 
+        loading: false, 
+        posts: _.mapKeys(action.payload, '_id') 
+      };
+
     case CREATE_POST:
-      return { ...state, [action.payload._id]: action.payload };  // [] here is not for creating array, is for key interpolation, i.e. newState[action.payload.id] = action.payload
+      return { 
+        loading: false, 
+        posts : { 
+          ...state.posts , 
+          [action.payload._id]: action.payload } 
+        };  // [] here is not for creating array, is for key interpolation, i.e. newState[action.payload.id] = action.payload
+    
     case FETCH_POST:
-      return { ...state, [action.payload._id]: action.payload };
+      return { 
+        loading: false , 
+        posts : { 
+          ...state.posts, 
+          [action.payload._id]: action.payload } 
+        };
+
     case UPDATE_POST:
-      return { ...state, [action.payload._id]: action.payload };
+      return { loading: false, 
+        posts : {
+          ...state.posts,
+          [action.payload._id]: action.payload }
+        };
+
     case DELETE_POST:
-      return _.omit(state, action.payload);
+      return {
+        loading: false,
+        posts: _.omit(state, action.payload) 
+      };
+
     default:
       return state;
   }

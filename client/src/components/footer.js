@@ -7,7 +7,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default () => {
+const Footer = () => {
   
   const classes = useStyles();
 
@@ -22,4 +22,6 @@ export default () => {
         <span className="text-muted">@2020 R@i Roshan</span>
     </Box>
   );
-}
+};
+
+export default Footer;

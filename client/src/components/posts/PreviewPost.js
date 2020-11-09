@@ -1,31 +1,4 @@
-/*import { Editor, EditorState, convertFromRaw } from "draft-js";
-import { Box, makeStyles } from '@material-ui/core';
-import { useState } from 'react';
-import 'draft-js/dist/Draft.css';
-
-const useStyles = makeStyles({
-  root: {
-    marginBottom: "0rem"
-  }
-});
-
-export default ({ storedState }) => {
-
-    const [editorState, setEditorState] = useState( EditorState.createWithContent(convertFromRaw(JSON.parse(storedState))) );
-
-    const classes = useStyles();
-    //const contentState = convertFromRaw(storedState);
-    //const editorState = EditorState.createWithContent(contentState);
-    
-    return <Box className={classes.root}>
-      <Editor 
-      editorState={editorState} 
-      readOnly={true} />
-      </Box>
-}
-*/
-
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import {Editor, EditorState, RichUtils, getDefaultKeyBinding, convertFromRaw} from 'draft-js';
 
 

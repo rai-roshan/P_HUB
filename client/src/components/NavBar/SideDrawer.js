@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { signoutUser } from '../../actions/authActions';
 import { SHOW_ALERT } from '../../actions/actionTypes';
-import clsx from 'clsx';
 import {Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
