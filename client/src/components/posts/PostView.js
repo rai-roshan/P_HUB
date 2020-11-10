@@ -6,6 +6,7 @@ import { checkAuthority, fetchPost } from '../../actions/postsAction';
 import { CHECK_AUTHORITY } from '../../actions/actionTypes';
 import { useEffect } from 'react';
 import { Skeleton } from '@material-ui/lab';
+import Cookies from 'js-cookie';
 
 const useStyles = makeStyles({
     root : {
@@ -47,6 +48,8 @@ export default (props) => {
 
     useEffect(()=>{
         dispatch(fetchPost(props.match.params.id));
+        
+        if(Cookies.get('token'))
         dispatch(checkAuthority(props.match.params.id));
 
         return () => {
@@ -82,7 +85,7 @@ export default (props) => {
                 </Box> : "" }
             </Box>
 
-            { post ?  <PreviewPost storedState={post.content} /> : <Skeleton variant="rect" width="100%" height="60vh" /> }
+            { post && post.content ?  <PreviewPost storedState={post.content} /> : <Skeleton variant="rect" width="100%" height="60vh" /> }
             </Container>
         </Paper>
     </Container>

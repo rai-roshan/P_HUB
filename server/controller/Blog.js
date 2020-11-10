@@ -5,7 +5,7 @@ let _ = require('lodash');
 exports.fetchPosts = function(req, res, next) {
     Post
       .find({})
-      .select({})
+      .select({ content : 0 })
       .limit(12)
       .sort({
         time: -1
