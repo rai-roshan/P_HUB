@@ -17,6 +17,7 @@ import PostView from './components/posts/PostView';
 import NotFound from './components/NotFound';
 import ProfileView from './components/profile/showProfile';
 import UpdateProfile from './components/profile/updateProfile';
+import UpdatePost from './components/posts/UpdatePost';
 //import CheckAuth from './components/Auth/CheckAuth';
 //import { makeStyles } from '@material-ui/core';
 
@@ -35,6 +36,7 @@ function App() {
           <Route path="/signin" component={ Signin2 } />
           <PrivateRoute path='/posts/my' redirectPath='/signin' component={ MyPosts } />
           <PrivateRoute path="/posts/new" redirectPath='/signin' component={ NewPost } />
+          <PrivateRoute path="/posts/update/:id" redirectPath="/signin" component={ UpdatePost } />
           <Route path='/posts/view/:id' component={ PostView } />
           <PrivateRoute path="/profile/my" redirectPath='/' component={ ProfileView } />
           <PrivateRoute path="/profile/update" redirectPath='/' component={ UpdateProfile } />

@@ -5,18 +5,18 @@ const authRoutes = require('./Routes/authRoute');
 const profileRoutes = require('./Routes/profileRoute');
 const blogRoutes = require('./Routes/blogRoute');
 const commentRoutes = require('./Routes/commentRoute');
-
+//{ extended: true }
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded( { extended: true } ));
+app.use(express.urlencoded(  ));
 
 app.use('/api/auth' , authRoutes);
 app.use('/api/profile' , profileRoutes);
 app.use('/api/posts' , blogRoutes);
 app.use('/api/comments' , commentRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT =  process.env.PORT || 5000;
 
 const onDBconnect = () => {
     app.listen(PORT,()=>{

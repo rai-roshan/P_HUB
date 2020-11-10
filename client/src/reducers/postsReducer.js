@@ -7,8 +7,9 @@ import {
   DELETE_POST,
   LOADING_POSTS
 } from '../actions/actionTypes';
+//import profileReducer from './profileReducer';
 
-export default function(state = { loading : true, posts : {} }, action) {
+const postsReducer = (state = { loading : true, posts : {} }, action) => {
   // Attention!!! The state object here refers to state.posts, instead of the application state.
 
   switch(action.type) {
@@ -56,4 +57,6 @@ export default function(state = { loading : true, posts : {} }, action) {
     default:
       return state;
   }
-}
+};
+
+export default postsReducer;

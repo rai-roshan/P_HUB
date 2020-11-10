@@ -61,17 +61,11 @@ const UpdateForm = () => {
         }),
         onSubmit : (values, { setSubmitting }) => {
             dispatch(updateProfile(values,history,setSubmitting));
-            /*setTimeout(() => {
-                // submit to the server
-                
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 1000);*/
         }
     });
 
     useEffect(()=>{
-        console.log("fetch user data",user);
+        //console.log("fetch user data",user);
         //if(!user)
         dispatch(fetchProfile());
         

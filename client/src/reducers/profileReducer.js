@@ -4,7 +4,7 @@ import {
     UPDATE_PROFILE,
   } from '../actions/actionTypes';
   
-export default (state={}, action) => {
+const profileReducer = (state={}, action) => {
     // Attention!!! The state object here refers to state.profile, instead of the application state.
   
     switch(action.type) {
@@ -17,4 +17,6 @@ export default (state={}, action) => {
       default:
         return state;
     }
-  }
+  };
+
+  export default profileReducer;

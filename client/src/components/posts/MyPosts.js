@@ -31,21 +31,32 @@ export default () => {
     return <Box>
     <Container maxWidth="md">
         <Box 
-        display="flex" 
+        display="flex"
         flexDirection="column"
+        mb="1rem" >
+        <Box 
+        display="flex" 
+        flexDirection="row"
+        alignItems="center"
         flexWrap="wrap" 
-        justifyContent="space-between" 
-        className={classes.mb2}>
-        <Typography variant="h2" className={classes.h2}>
-            My Posts
-        </Typography>
-        <Divider />
-        <Button variant="contained" color="primary">
+        justifyContent="space-between" mb="0.5rem">
+            
+            <Typography variant="h2" className={classes.h2}>
+                My Posts
+            </Typography>
+
             <Link to="/posts/new">
-            Create new post
+            <Button variant="contained" color="primary">
+                Create new post
+            </Button>
             </Link>
-        </Button>
+
         </Box>
+
+        <Divider />
+        
+        </Box>
+
     </Container>
 
     { loading ? <LoadingPosts /> : <PostList posts={ posts } /> }

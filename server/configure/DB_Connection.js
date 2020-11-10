@@ -6,13 +6,14 @@ dotenv.config();
 const connOption = {
     useNewUrlParser: true , 
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    useCreateIndex: true,
 };
 
-//'mongodb://localhost:blog/blog' mongodb+srv://m001-student:4344atlas4344@cluster0.vose6.mongodb.net/RaiBlog?retryWrites=true&w=majority
-console.log(process.env.DB_USER);
-console.log(process.env.DB_COLLECTION_PASSWORD);
-mongoose.connect( `mongodb+srv://m001-student:4344atlas4344@cluster0.vose6.mongodb.net/RaiBlog?retryWrites=true&w=majority`, connOption );
+mongoose.connect(process.env.DB_REMOTE_URI , connOption )
+.catch(err=>{
+    console.log("mongoDB error : ",err);
+});
 const db = mongoose.connection;
 
 const dbEvent = ( onDBconnect ) => {

@@ -12,7 +12,7 @@ exports.fetchPosts = function(req, res, next) {
       })
       .exec(function(err, posts) {
         if (err) {
-          console.log(err);
+          //console.log(err);
           return res.status(422).json({
             message: 'Error! Could not retrieve posts.'
           });
@@ -64,7 +64,7 @@ exports.fetchPosts = function(req, res, next) {
       _id: req.params.id
     }, function(err, post) {
       if (err) {
-        console.log(err);
+        //console.log(err);
         return res.status(422).json({
           message: 'Error! Could not retrieve the post with the given post ID.'
         });
@@ -89,7 +89,7 @@ exports.fetchPosts = function(req, res, next) {
     }, function(err, post) {
   
       if (err) {
-        console.log(err);
+        //console.log(err);
         return res.status(422).json({
           message: 'Error! Could not retrieve the post with the given post ID.'
         });
@@ -102,8 +102,8 @@ exports.fetchPosts = function(req, res, next) {
         });
       }
   
-      console.log(user._id);
-      console.log(post.authorId);
+      //console.log(user._id);
+      //console.log(post.authorId);
   
       // Check if the user ID is equal to the author ID
       if (!user._id.equals(post.authorId)) {
@@ -124,7 +124,7 @@ exports.updatePost = function(req, res, next) {
     }, function(err, post) {
   
       if (err) {
-        console.log(err);
+        //console.log(err);
         return res.status(422).json({
           message: 'Error! Could not retrieve the post with the given post ID.'
         });
@@ -138,8 +138,8 @@ exports.updatePost = function(req, res, next) {
       }
   
       // Make sure the user ID is equal to the author ID (Cause only the author can edit the post)
-      // console.log(user._id);
-      // console.log(post.authorId);
+      // //console.log(user._id);
+      // //console.log(post.authorId);
       if (!user._id.equals(post.authorId)) {
         return res.status(422).json({
           message: 'Error! You have no authority to modify this post.'
@@ -205,7 +205,7 @@ exports.updatePost = function(req, res, next) {
 
     // Require auth
     const user = req.user;
-    //console.log("=================user : ", user);
+    ////console.log("=================user : ", user);
     // Fetch posts by author ID
     Post
       .find({
@@ -218,7 +218,7 @@ exports.updatePost = function(req, res, next) {
       })
       .exec(function(err, posts) {
         if (err) {
-          console.log(err);
+          //console.log(err);
           return res.status(422).json({
             message: 'Error! Could not retrieve posts. rai'
           });

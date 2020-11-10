@@ -53,7 +53,7 @@ const ProfileView = () => {
             <Box display="flex" flexDirection="column" flexWrap="wrap" justifyContent="center" alignItems="center">
                 
                 <Box width="7rem" marginBottom="1rem" >
-                    { user ? <img src={profilepic} style={ { maxHeight: "7rem" , maxWidth: "7rem" }} /> : 
+                    { user ? <img src={profilepic} alt="profile pic" style={ { maxHeight: "7rem" , maxWidth: "7rem" }} /> : 
                       <Skeleton variant="rect" height="7rem" width="7rem" />}
                 </Box>
             

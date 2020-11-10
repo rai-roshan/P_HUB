@@ -2,6 +2,7 @@ import {
     AUTH_USER,
     UNAUTH_USER,
   } from './actionTypes';
+
 import { SHOW_ALERT } from './actionTypes';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -13,9 +14,7 @@ console.log("password : ",password);
 return function(dispatch) {
     axios.post(`/api/auth/signin`, { email, password }) 
     .then(response => {  
-        //localStorage.setItem('token', response.data.token);
         Cookies.set('token',response.data.token,{ expires: 1 });
-        //console.log("res :", response.data);
         setSubmitting(false);
         dispatch({
         type: AUTH_USER,
@@ -29,7 +28,6 @@ return function(dispatch) {
             alertType: "success" });
     })
     .catch( err => {  
-        //console.log("error : ", err);
         setSubmitting(false);
         dispatch({ 
             type: SHOW_ALERT, 
@@ -51,8 +49,6 @@ export function signupUser({ email, password, firstName, lastName }, history, se
     return function(dispatch) {
       axios.post(`/api/auth/signup`, { email, password, firstName, lastName })  // axios returns a promise
         .then(response => {  // If request is good (sign up succeeded) ...
-         //console.log("res :", response.data);
-          // - Redirect (PUSH) to the route '/signin', then show a success message to the user
           setSubmitting(false);
           history.push('/signin');
           dispatch({ 
@@ -83,11 +79,12 @@ export function verifyAuth () {
             });
         })
         .catch(err=>{
-            //console.log("error : ",err);
             dispatch({ 
                 type: SHOW_ALERT, 
                 payload: err.response.data.message , 
                 alertType: "error"});
+                Cookies.remove('token');
         });
     };
 };
+

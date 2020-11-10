@@ -1,6 +1,6 @@
 import { SHOW_ALERT, CLEAR_ALERT } from '../actions/actionTypes';
 
-export default (state={ open: false, message : "can't reach server", alertType: "info" }, action) => {
+const alertReducer = (state={ open: false, message : "can't reach server", alertType: "info" }, action) => {
 
     if(!action.payload)
     action.payload = "can't reach server";
@@ -20,3 +20,5 @@ export default (state={ open: false, message : "can't reach server", alertType: 
             return state;
     }
 };
+
+export default alertReducer;
