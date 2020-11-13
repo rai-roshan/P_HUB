@@ -56,7 +56,7 @@ exports.signin = (req, res, next) => {
 
         //check password
         var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-        if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
+        if (!passwordIsValid) return res.status(401).send({ auth: false, token: null , message : "The password doesn't match" });
         
         //create json token
         const token = jwt.sign({ id: user._id} , process.env.SECRET_KEY, {

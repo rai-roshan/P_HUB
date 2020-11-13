@@ -44,7 +44,7 @@ export default ({ post }) => {
           </Typography>
         
           <Box display="flex" justifyContent="left" flexWrap="wrap" >
-            { post.categories.map(tag=> <Chip color="primary" variant="outlined" label={tag} onClick={ handleTagClick } className={classes.mr1} />) }
+            { post.categories ? post.categories.map(tag=> <Chip color="primary" variant="outlined" label={tag} onClick={ handleTagClick } className={classes.mr1} />) : null }
           </Box>
         </CardContent>
       </CardActionArea>

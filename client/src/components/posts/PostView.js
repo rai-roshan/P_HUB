@@ -1,8 +1,8 @@
 import { Typography, Container, makeStyles, Paper, Box , Chip, Button } from '@material-ui/core';
 import PreviewPost from './PreviewPost';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { checkAuthority, fetchPost } from '../../actions/postsAction';
+import { Link, useHistory } from 'react-router-dom';
+import { checkAuthority, fetchPost, deletePost } from '../../actions/postsAction';
 import { CHECK_AUTHORITY } from '../../actions/actionTypes';
 import { useEffect } from 'react';
 import { Skeleton } from '@material-ui/lab';
@@ -35,6 +35,7 @@ export default (props) => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
+    const history = useHistory();
     const { posts } = useSelector(store=>store.postsReducer);
     const { allowChange } = useSelector(store=>store.authReducer); 
     let post = null;
@@ -77,11 +78,9 @@ export default (props) => {
                         { post ? "update" : <Skeleton width="3rem" /> } 
                     </Button>
                     </Link>
-                    <Link to={``}>
-                    <Button variant="contained" className={classes.mr1} color="secondary">
+                    <Button onClick={ ()=>{ dispatch(deletePost(props.match.params.id, history)) } } variant="contained" className={classes.mr1} color="secondary">
                     { post ? "delete" : <Skeleton width="3rem" /> }
                     </Button>
-                    </Link>
                 </Box> : "" }
             </Box>
 

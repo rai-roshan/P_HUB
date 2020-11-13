@@ -186,6 +186,11 @@ exports.updatePost = function(req, res, next) {
           message: 'Error! The post with the given ID is not exist.'
         });
       }
+
+      /*//verify the user/author
+      if(post.authorId!=req.userId){
+        res.status(501).send({ message : "This action is not allowed" });
+      } */
   
       // Delete comments correspond to this post
       Comment.remove({ postId: post._id }, function(err) {

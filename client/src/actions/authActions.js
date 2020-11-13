@@ -8,8 +8,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 export function signinUser({ email, password }, history ,setSubmitting) {
-console.log("email : ",email);
-console.log("password : ",password);
+//console.log("email : ",email);
+//console.log("password : ",password);
 
 return function(dispatch) {
     axios.post(`/api/auth/signin`, { email, password }) 

@@ -103,7 +103,10 @@ export function fetchPosts() {
           dispatch({ type: SHOW_ALERT, payload: "updated succesfully" , alertType : "success" });
         })
         .catch(({response}) => {
-          dispatch({ type: SHOW_ALERT, payload : response.message , alertType: "error" });
+          dispatch({ 
+            type: SHOW_ALERT, 
+            payload : response.message, 
+            alertType: "error" });
         });
     }
   }
@@ -113,17 +116,23 @@ export function fetchPosts() {
     return function(dispatch) {
       axios.delete(`${ROOT_URL}/${id}`, {
         headers: {'x-access-token' : Cookies.get('token') }  // require auth
-      }).then((response) => {
+      }).then( res => {
         dispatch({
           type: DELETE_POST,
           payload: id,
         });
+        dispatch({
+          type: SHOW_ALERT,
+          payload: res.data.message,
+          alertType: "success"
+        })
         history.push('/posts/my');
       })
       .catch(err=>{
+        console.log("error: ",err);
         dispatch({
           type: SHOW_ALERT,
-          payload: err.response.message,
+          payload: err.response.data.message,
           alertType: "error"
         });
       });
