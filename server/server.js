@@ -9,7 +9,7 @@ const commentRoutes = require('./Routes/commentRoute');
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded(  ));
+app.use(express.urlencoded( {extended: true} ));
 
 app.use('/api/auth' , authRoutes);
 app.use('/api/profile' , profileRoutes);
