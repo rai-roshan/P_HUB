@@ -29,7 +29,7 @@ export default ({ post }) => {
     console.log("do nothing")
   };
 
-  return <Card key={post._id} className={classes.root} >
+  return <Card className={classes.root} >
     <Link to={`/posts/view/${post._id}`}>
       <CardActionArea>
         <CardContent>
@@ -44,7 +44,7 @@ export default ({ post }) => {
           </Typography>
         
           <Box display="flex" justifyContent="left" flexWrap="wrap" >
-            { post.categories ? post.categories.map(tag=> <Chip color="primary" variant="outlined" label={tag} onClick={ handleTagClick } className={classes.mr1} />) : null }
+            { post.categories ? post.categories.map(tag=> <Chip key={ "tag"+tag } color="primary" variant="outlined" label={tag} onClick={ handleTagClick } className={classes.mr1} />) : null }
           </Box>
         </CardContent>
       </CardActionArea>

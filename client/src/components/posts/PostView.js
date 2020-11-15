@@ -7,6 +7,8 @@ import { CHECK_AUTHORITY } from '../../actions/actionTypes';
 import { useEffect } from 'react';
 import { Skeleton } from '@material-ui/lab';
 import Cookies from 'js-cookie';
+import CommentField from '../comment/commentField';
+import Comments from '../comment/comments';
 
 const useStyles = makeStyles({
     root : {
@@ -14,7 +16,8 @@ const useStyles = makeStyles({
     },
     blogTitle : {
         marginBottom: "2rem",
-        fontWeight: "500"
+        fontWeight: "500",
+        overflow: "auto"
     },
     paper : {
         paddingTop: "1.5rem",
@@ -66,7 +69,7 @@ export default (props) => {
             </Typography>
 
             <Box display="flex" justifyContent="left" flexWrap="wrap" mb="1rem">
-            { post ? post.categories.map(tag=> <Chip color="primary" variant="outlined" label={tag} onClick={ handleTagClick } className={classes.mr1} />) : <Skeleton width="16rem" height="2rem" /> }
+            { post ? post.categories.map(tag=> <Chip key={"tag"+tag} color="primary" variant="outlined" label={tag} onClick={ handleTagClick } className={classes.mr1} />) : <Skeleton width="16rem" height="2rem" /> }
             </Box>
 
             <Box display="flex" justifyContent="space-between" alignItems="center" flexWrap="wrap" mb="1rem">
@@ -87,5 +90,9 @@ export default (props) => {
             { post && post.content ?  <PreviewPost storedState={post.content} /> : <Skeleton variant="rect" width="100%" height="60vh" /> }
             </Container>
         </Paper>
+
+        <CommentField />
+
+        <Comments />
     </Container>
 };

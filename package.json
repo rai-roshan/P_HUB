@@ -1,0 +1,12 @@
+{
+    "scripts": {
+        "start" : "node server/server.js",
+        "dev" : "nodemon server/server.js",
+        "client" : "npm start --prefix client"
+    },
+    "engines": {
+        "yarn" : "1.22.10",
+        "npm" : "6.14.8",
+        "node" : "14.4.0"
+    }
+}
