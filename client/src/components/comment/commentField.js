@@ -1,6 +1,9 @@
 import { TextField, Box, makeStyles, Button } from '@material-ui/core';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { createComment } from '../../actions/commentActions';
 
 const useStyles = makeStyles({
     comment : {
@@ -14,8 +17,10 @@ const useStyles = makeStyles({
     }
 });
 
-const CommentField = () => {
+const CommentField = ({ postId }) => {
 
+    const history = useHistory();
+    const disptach = useDispatch();
     const classes = useStyles();
     const formik = useFormik({
         initialValues: {
@@ -25,9 +30,13 @@ const CommentField = () => {
             comment : Yup.string()
             .required("Comment can't be empty")
         }),
-        onSubmit : (values, {setSubmitting} )=>{
+        onSubmit : (values, {setSubmitting, resetForm} )=>{
             //submit action
-            alert({ message : "comment posted"})
+            let data = {
+                postId : postId,
+                comment : values.comment
+            }
+            disptach(createComment(data,resetForm,history, setSubmitting) );
         }
     });
 

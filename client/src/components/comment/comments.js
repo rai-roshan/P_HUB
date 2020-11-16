@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -6,14 +6,13 @@ import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
 import { ListSubheader } from '@material-ui/core';
 
 import LazyLoad from 'react-lazyload';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchComments } from '../../actions/commentActions';
 
-const data = [ { _id : 1, content : "I'll be in your neighborhood doing errands this…", authorName : "author 1" },
-{ _id : 2, content : "I'll be in your neighborhood doing errands this…", authorName : "author2" },
-{ _id : 3, content : "I'll be in your neighborhood doing errands this…", authorName : "author 3" }]
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,20 +47,30 @@ const CommentBlock = ({ data }) => {
     </div>
 }
 
-export default function AlignItemsList() {
+export default function AlignItemsList({ postId }) {
   const classes = useStyles();
+  const dispatch  = useDispatch();
 
-  return (
-    <List className={classes.root}>
+  const { loading, comments } = useSelector(store=>store.commentReducer); 
+
+  useEffect(()=>{
+    dispatch(fetchComments(postId));
+  },[]);
+
+  return <List className={classes.root}>
 
         <ListSubheader component="div" id="nested-list-subheader">
           All Comments :-
         </ListSubheader>
 
-      { data.map(comm => <LazyLoad key={comm._id} placeholder="Loading...">
+      { loading ? <ListSubheader component="div" id="nested-list-subheader">
+          Loading Comments ...
+        </ListSubheader> :  
+        comments.length ? comments.map(comm => <LazyLoad key={comm._id} placeholder="Loading..."> 
       <CommentBlock data={comm} key={ comm._id } /> 
-      </LazyLoad> )}
+      </LazyLoad> ) : <ListSubheader component="div" id="nested-list-subheader">
+          No Comments Till Now
+        </ListSubheader> }
       
-    </List>
-  );
+    </List> 
 }

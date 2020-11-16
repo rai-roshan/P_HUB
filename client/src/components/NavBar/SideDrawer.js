@@ -81,14 +81,14 @@ const AuthList = ({username , handleSignout }) => {
 
 const UnauthList = () => {
     return <List>
-        <Link to="signin">
+        <Link to="/signin">
         <ListItem button >
         <ListItemIcon> <DoubleArrow /> </ListItemIcon>
         <ListItemText primary={ "Login" } />
         </ListItem>
         </Link>
 
-        <Link to="signup">
+        <Link to="/signup">
         <ListItem button >
         <ListItemIcon> <DoubleArrow /> </ListItemIcon>
         <ListItemText primary={ "Signup" } />

@@ -36,7 +36,7 @@ exports.createComment = function(req, res, next) {
       if (err) {
         return next(err);
       }
-      res.json(comment);  // return the created comment
+      res.send(comment);  // return the created comment
     });
   };
   

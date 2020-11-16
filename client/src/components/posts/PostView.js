@@ -91,8 +91,8 @@ export default (props) => {
             </Container>
         </Paper>
 
-        <CommentField />
+        <CommentField postId={props.match.params.id} />
 
-        <Comments />
+        <Comments postId={props.match.params.id} />
     </Container>
 };

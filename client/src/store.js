@@ -6,10 +6,11 @@ import authReducer from './reducers/auth_reducer';
 import profileReducer from './reducers/profileReducer';
 import alertReducer from './reducers/alertReducer';
 import postsReducer from './reducers/postsReducer';
+import commentReducer from './reducers/commentReducer';
 
 import {AUTH_USER} from './actions/actionTypes';
 
-const reducers = combineReducers({authReducer, profileReducer, alertReducer, postsReducer});
+const reducers = combineReducers({authReducer, profileReducer, alertReducer, postsReducer, commentReducer});
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 
