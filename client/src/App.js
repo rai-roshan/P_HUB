@@ -18,6 +18,7 @@ import NotFound from './components/NotFound';
 import ProfileView from './components/profile/showProfile';
 import UpdateProfile from './components/profile/updateProfile';
 import UpdatePost from './components/posts/UpdatePost';
+import SearchResult from './components/SearchResult';
 //import CheckAuth from './components/Auth/CheckAuth';
 //import { makeStyles } from '@material-ui/core';
 
@@ -40,6 +41,7 @@ function App() {
           <Route path='/posts/view/:id' component={ PostView } />
           <PrivateRoute path="/profile/my" redirectPath='/' component={ ProfileView } />
           <PrivateRoute path="/profile/update" redirectPath='/' component={ UpdateProfile } />
+          <Route path='/search/:keyword' component={ SearchResult } />
           <Route component={NotFound} />
         </Switch>
       </Router>

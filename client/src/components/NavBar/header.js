@@ -11,7 +11,7 @@ import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import {Skeleton} from '@material-ui/lab';
-
+import { Redirect, useHistory } from 'react-router-dom';
 
 import SideDrawer from './SideDrawer';
 import { Button } from '@material-ui/core';
@@ -86,8 +86,10 @@ const useStyles = makeStyles((theme) => ({
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const [sidebar, setSidebar] = useState(false);
+  const [keyword, setKeyword] = useState('');
   const { authenticated, username  } = useSelector(store=> store.authReducer );
   const dispatch = useDispatch();
+  const history = useHistory();
   //console.log("auth store : ", authStore);
 
 
@@ -95,7 +97,23 @@ export default function PrimarySearchAppBar() {
     if(authenticated && !username){
       dispatch(verifyAuth());
     }
-  },[])
+  },[]);
+
+  const handleChange = (e) => {
+
+    console.log(e.target.value);
+    setKeyword(e.target.value);
+  };
+
+  const handleEnter = (e) => {
+    if(e.keyCode === 13){
+      console.log("enter");
+
+      if(keyword)
+      history.push(`/search/${keyword}`);
+      //return <Redirect to={`/search/${keyword}`} />
+    }
+  }
 
   return (
     <div className={classes.grow}>
@@ -120,6 +138,8 @@ export default function PrimarySearchAppBar() {
               <SearchIcon />
             </div>
             <InputBase
+              onChange={ handleChange }
+              onKeyDown={ handleEnter }
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,

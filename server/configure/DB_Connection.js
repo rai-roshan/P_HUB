@@ -10,7 +10,7 @@ const connOption = {
     useCreateIndex: true,
 };
 
-mongoose.connect(process.env.DB_REMOTE_URI , connOption )
+mongoose.connect(process.env.DB_LOCAL_URI , connOption )
 .catch(err=>{
     console.log("mongoDB error : ",err);
 });
