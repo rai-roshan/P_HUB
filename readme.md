@@ -1,7 +1,22 @@
-# RAI-DEV-BLOG
+# P_HUB (Programmers Hub)
 This is a MERN stack WEB Application , In which one can create posts using markdown editor. This is only for learning purpose . 
 
-you can check the running application [here](http://dev-blog-rai.herokuapp.com/).
+<p align="center">
+  check the running application [here](http://dev-blog-rai.herokuapp.com/)
+  <br/>
+  if this was helpful a ⭐ would be commitable ;) 
+</p>
+
+# TECH STACK USED 
+<p align="center">
+<img height="60" src="https://user-images.githubusercontent.com/46826283/139316231-a85a2b27-9369-485d-ac4e-235d20a3fd0d.png" />
+<img height="60" src="https://user-images.githubusercontent.com/46826283/139315769-8de8189f-ea7a-4b5c-b919-3c9d073adb74.png" />
+<img height="60" src="https://user-images.githubusercontent.com/46826283/139315790-9af897c2-291b-4358-8ca5-be4da6e16285.png" />
+<img height="60" src="https://user-images.githubusercontent.com/46826283/139315804-76462e34-694b-42bf-a1ff-4c1d4ae13781.png" />
+<img height="https://user-images.githubusercontent.com/46826283/139316215-b37ea3e9-73f6-48ad-8d3c-a9225fc8fb94.png" />
+<img height="60" src="https://user-images.githubusercontent.com/46826283/139316226-d9c18e94-809d-422b-a21c-ff36756bb0a1.png" />
+<img height="60" src="https://user-images.githubusercontent.com/46826283/139316607-c3a643d4-3596-496e-912d-43abfba0e565.png" />
+</p>
 
 ## FEATURE OF THE APPLICATION
 1. SIGNUP/SIGNIN .
