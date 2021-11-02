@@ -18,6 +18,15 @@ This is a MERN stack WEB Application , In which one can create posts using markd
 <img height="60" src="https://user-images.githubusercontent.com/46826283/139316607-c3a643d4-3596-496e-912d-43abfba0e565.png" />
 </p>
 
+<p align="center">
+  <img height="250" src="https://user-images.githubusercontent.com/46826283/139789769-b0b10283-7f26-474a-aeb5-71a8fe4d65f6.png" />
+  <img height="250" src="https://user-images.githubusercontent.com/46826283/139789780-9251c1ad-3673-487b-90e3-b60cbcb8a22f.png" />
+  <img height="250" src="https://user-images.githubusercontent.com/46826283/139789801-b8a3abce-f300-4702-9ae8-ab44676de534.png" />
+  <img height="250" src="https://user-images.githubusercontent.com/46826283/139789811-ce9bceb6-6e28-4025-b15f-8d4d8bc43a01.png" />
+  <img height="250" src="https://user-images.githubusercontent.com/46826283/139789825-8b59e0d6-e381-4d0e-be84-06e63ab2e765.png" />
+  <img height="250" src="https://user-images.githubusercontent.com/46826283/139789828-9400a6cb-0ca8-49e9-b17b-3ee261fb9911.png" />
+</p>
+
 ## FEATURE OF THE APPLICATION
 1. SIGNUP/SIGNIN .
 2. UPDATE user profile.
